@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "run-p \"format:**\"",
+    "format:index": "prettier --write \"*.{js,json,md}\"",
+    "format:pages": "prettier --write \"pages/**/*.{css,js,ts,tsx}\""
   },
   "dependencies": {
     "classnames": "^2.3.1",
