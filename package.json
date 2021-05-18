@@ -11,6 +11,7 @@
     "format:pages": "prettier --write \"pages/**/*.{css,js,ts,tsx}\""
   },
   "dependencies": {
+    "@sentry/nextjs": "^6.4.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.19.0",
     "gray-matter": "^4.0.2",
