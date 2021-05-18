@@ -1,36 +1,37 @@
-import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
+import Head from "next/head";
+import Link from "next/link";
 
-const name = 'Fadhil Amadan'
-export const siteTitle = 'Fadhil Amadan'
+import utilStyles from "../styles/utils.module.css";
+import styles from "./layout.module.css";
+
+const name = "Fadhil Amadan";
+export const siteTitle = "Fadhil Amadan";
 
 export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
         <meta
-          name="description"
           content="Learn how to build a personal website using Next.js"
+          name="description"
         />
         <meta
-          property="og:image"
           content={`https://og-image.now.sh/${encodeURI(
-            siteTitle
+            siteTitle,
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          property="og:image"
         />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta content={siteTitle} name="og:title" />
+        <meta content="summary_large_image" name="twitter:card" />
       </Head>
       <header className={styles.header}>
         {home ? (
           <>
             <img
-              src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
+              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+              src="/images/profile.jpg"
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -39,9 +40,9 @@ export default function Layout({ children, home }) {
             <Link href="/">
               <a>
                 <img
-                  src="/images/profile.jpg"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
+                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+                  src="/images/profile.jpg"
                 />
               </a>
             </Link>
@@ -62,5 +63,5 @@ export default function Layout({ children, home }) {
         </div>
       )}
     </div>
-  )
+  );
 }
