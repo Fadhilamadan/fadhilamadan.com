@@ -12,19 +12,7 @@ module.exports = {
   rules: {
     // simple import rules
     "simple-import-sort/exports": "warn",
-    "simple-import-sort/imports": [
-      "warn",
-      {
-        groups: [
-          ["^.+\\.s?css$"],
-          ["^\\u0000"],
-          ["^react$"],
-          ["^@/"],
-          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-        ],
-      },
-    ],
+    "simple-import-sort/imports": "warn",
 
     // react rules
     "react/prop-types": "off",
