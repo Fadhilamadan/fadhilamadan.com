@@ -1,12 +1,21 @@
-import Head from "next/head";
-import Link from "next/link";
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
 
-import Date from "../components/date";
-import Layout, { siteTitle } from "../components/layout";
-import { getSortedPostsData } from "../lib/posts";
-import utilStyles from "../styles/utils.module.css";
+import Date from '../components/date';
+import Layout, { siteTitle } from '../components/layout';
+import { getSortedPostsData } from '../lib/posts';
+import utilStyles from '../styles/utils.module.css';
 
-export default function Home({ allPostsData }) {
+export default function Home({
+  allPostsData,
+}: {
+  allPostsData: {
+    date: string;
+    title: string;
+    id: string;
+  }[];
+}) {
   return (
     <Layout home>
       <Head>
@@ -15,7 +24,7 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>
           Hello, I'm Fadhil. I'm a software engineer and lifelong learner. You
-          can contact me on <a href="mailto:mail@fadhilamadan.com">Email</a> or{" "}
+          can contact me on <a href="mailto:mail@fadhilamadan.com">Email</a> or{' '}
           <a
             href="https://www.linkedin.com/in/fadhilamadan"
             rel="noreferrer"
@@ -46,11 +55,11 @@ export default function Home({ allPostsData }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};
