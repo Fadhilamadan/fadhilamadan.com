@@ -1,34 +1,37 @@
 module.exports = {
-  extends: [
-    "plugin:prettier/recommended",
-    "prettier/react",
-    "kentcdodds",
-    "kentcdodds/react",
-    "kentcdodds/jsx-a11y",
-  ],
-
-  plugins: ["prettier", "simple-import-sort"],
-
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ['plugin:react/recommended', 'airbnb'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint', 'simple-import-sort'],
   rules: {
     // simple import rules
-    "simple-import-sort/exports": "warn",
-    "simple-import-sort/imports": "warn",
+    'simple-import-sort/exports': 'warn',
+    'simple-import-sort/imports': 'warn',
 
     // react rules
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/no-unstable-nested-components": "off",
-    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
-    "react/jsx-sort-props": [
-      "warn",
-      {
-        reservedFirst: ["key"],
-      },
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-unstable-nested-components': 'off',
+    'react/jsx-sort-props': ['warn', { reservedFirst: ['key'] }],
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
 
-    // various rules
-    "no-void": "off",
-    "require-await": "off",
-    "max-lines-per-function": "off",
+    // other rules
+    'no-void': 'off',
+    'require-await': 'off',
+    'max-lines-per-function': 'off',
   },
 };
