@@ -11,9 +11,13 @@
     "format:pages": "prettier --write \"pages/**/*.{css,js,ts,tsx}\""
   },
   "dependencies": {
+    "@chakra-ui/react": "^1.6.3",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "@sentry/nextjs": "^6.4.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.19.0",
+    "framer-motion": "^4.1.17",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "gray-matter": "^4.0.2",
