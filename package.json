@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "codegen": "graphql-codegen"
+    "codegen": "env-cmd -f .env.local graphql-codegen"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.3",
