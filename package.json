@@ -6,9 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "run-p \"format:**\"",
-    "format:index": "prettier --write \"*.{js,json,md}\"",
-    "format:pages": "prettier --write \"pages/**/*.{css,js,ts,tsx}\"",
     "codegen": "graphql-codegen"
   },
   "dependencies": {
