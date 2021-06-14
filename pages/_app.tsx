@@ -35,8 +35,8 @@ const Providers: React.FC<Pick<CustomAppProps, 'meta'>> = (props) => {
   );
 };
 
-const Effects: React.FC<Pick<CustomAppProps, 'router'>> = (props) => {
-  const { router } = props;
+const Effects: React.FC<Pick<CustomAppProps, 'meta' | 'router'>> = (props) => {
+  const { meta, router } = props;
 
   useNProgress(router);
 
