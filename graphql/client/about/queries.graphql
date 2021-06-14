@@ -1,0 +1,14 @@
+query aboutStaticProps {
+  about {
+    image {
+      responsiveImage {
+        ...ResponsiveImageFields
+      }
+    }
+    knowledges {
+      title
+      entries
+    }
+    preface
+  }
+}
