@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.6.3",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "@fec/remark-a11y-emoji": "^3.1.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.19.0",
     "env-cmd": "^10.1.0",
