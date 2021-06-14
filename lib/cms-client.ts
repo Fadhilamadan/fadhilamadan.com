@@ -6,7 +6,7 @@ export const DATOCMS_ENDPOINT =
     : 'https://graphql.datocms.com/preview';
 
 export const DATOCMS_HEADERS = {
-  Authorization: process.env.DATOCMS_API_KEY,
+  Authorization: process.env.NEXT_PUBLIC_DATOCMS_API_KEY,
 };
 
 const client = new GraphQLClient(DATOCMS_ENDPOINT, {
