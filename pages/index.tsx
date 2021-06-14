@@ -1,65 +1,89 @@
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import Link from 'next/link';
+import * as React from 'react';
 
-import Date from '../components/date';
-import Layout, { siteTitle } from '../components/layout';
-import { getSortedPostsData } from '../lib/posts';
-import utilStyles from '../styles/utils.module.css';
+import DatoImage from '~components/dato-image';
+import { HomeStaticPropsQuery } from '~generated/graphql';
+import cms from '~lib/cms';
+import { useMeta } from '~store/meta';
 
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[];
-}) {
-  return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>
-          Hello, I'm Fadhil. I'm a software engineer and lifelong learner. You
-          can contact me on <a href="mailto:mail@fadhilamadan.com">Email</a> or{' '}
-          <a
-            href="https://www.linkedin.com/in/fadhilamadan"
-            rel="noreferrer"
-            target="_blank"
-          >
-            LinkedIn
-          </a>
-          .
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li key={id} className={utilStyles.listItem}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
-  );
+import { Box, Container, Heading, Link, Stack, Text } from '@chakra-ui/react';
+import { GetStaticProps, NextPage } from 'next';
+import NextLink from 'next/link';
+import { NextSeo } from 'next-seo';
+
+interface HomePageProps {
+  data: HomeStaticPropsQuery;
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const data = await cms().homeStaticProps();
   return {
     props: {
-      allPostsData,
+      data,
     },
   };
 };
+
+const HomePage: NextPage<HomePageProps> = (props) => {
+  const { data } = props;
+
+  const meta = useMeta();
+
+  return (
+    <>
+      <NextSeo title={meta.site.seo.siteName} />
+
+      <Container maxW="4xl" p={[4, 8]}>
+        <Stack align="center" spacing={4} textAlign="center">
+          <NextLink href="/about" passHref>
+            <Box
+              _hover={{ bgColor: 'whiteAlpha.50' }}
+              as="a"
+              borderRadius="full"
+              maxW="xs"
+              overflow="hidden"
+              sx={{
+                WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                MozBackfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                MozTransform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+              }}
+              transform="auto-gpu"
+              transitionDuration="normal"
+              transitionProperty="common"
+              transitionTimingFunction="ease-out"
+            >
+              <DatoImage data={data.site.favicon.responsiveImage} />
+            </Box>
+          </NextLink>
+
+          <Heading size="2xl">Hey! I&apos;m Fadhil Amadan.</Heading>
+
+          <Text color="whiteAlpha.700" fontSize={['lg', 'xl']} maxW="2xl">
+            {meta.site.seo.fallback.description}
+          </Text>
+
+          <Box color="whiteAlpha.400">· · ·</Box>
+
+          <Text pb={8}>
+            Reach me via email at{' '}
+            <Link href={`mailto:${meta.about.email}`} variant="link">
+              {meta.about.email}
+            </Link>
+            , or Twitter at{' '}
+            <Link
+              href={`https://twitter.com/${meta.site.seo.twitterAccount}`}
+              isExternal
+              variant="link"
+            >
+              {meta.site.seo.twitterAccount}
+            </Link>
+            .
+          </Text>
+        </Stack>
+      </Container>
+    </>
+  );
+};
+
+export default HomePage;
