@@ -10,7 +10,7 @@ import {
   IconButton,
   Stack,
 } from '@chakra-ui/react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 
 const Footer: React.FC = () => {
@@ -25,13 +25,24 @@ Inspired from [Griko](https://griko.id).
 MIT License &copy; ${new Date().getFullYear()}&ndash;present
 [${meta.site.seo.siteName}](.).`;
 
-  const { GitHub, LinkedIn } = meta.about.socials as Record<string, string>;
+  const { GitHub, LinkedIn, Twitter } = meta.about.socials as Record<
+    string,
+    string
+  >;
 
   return (
     <Container as="footer" color="whiteAlpha.700" maxW="4xl" p={[4, 8]}>
       <Stack align="center" fontSize="xs" spacing={4} textAlign="center">
         <ReactMarkdown children={content.trim()} components={baseComponents} />
         <ButtonGroup>
+          <IconButton
+            aria-label="Twitter"
+            as="a"
+            href={Twitter}
+            icon={<Icon as={FaTwitter} />}
+            target="_blank"
+            variant="ghost"
+          />
           <IconButton
             aria-label="GitHub"
             as="a"
@@ -41,7 +52,7 @@ MIT License &copy; ${new Date().getFullYear()}&ndash;present
             variant="ghost"
           />
           <IconButton
-            aria-label="GitHub"
+            aria-label="LinkedIn"
             as="a"
             href={LinkedIn}
             icon={<Icon as={FaLinkedin} />}
