@@ -1,0 +1,11 @@
+fragment ProjectFragment on ProjectRecord {
+  id
+  title
+  url
+  subtitle
+  cover {
+    responsiveImage(imgixParams: { ar: "16:9", fit: crop }) {
+      ...ResponsiveImageFields
+    }
+  }
+}
