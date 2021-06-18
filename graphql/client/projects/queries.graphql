@@ -1,0 +1,6 @@
+query projectsStaticProps {
+  allProjects(orderBy: startDate_DESC) {
+    ...ProjectFragment
+  }
+}
+

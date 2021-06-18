@@ -1,5 +1,6 @@
 const routes = {
   '/': 'Home',
+  '/projects': 'Projects',
   '/about': 'About',
 };
 

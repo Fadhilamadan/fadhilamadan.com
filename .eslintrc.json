@@ -1,8 +1,15 @@
 {
-  "extends": ["plugin:react/recommended", "airbnb"],
-
-  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
-
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "kentcdodds",
+    "kentcdodds/react",
+    "kentcdodds/jsx-a11y",
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": ["simple-import-sort"],
   "rules": {
     // import rules
     "import/extensions": [
@@ -39,6 +46,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-unstable-nested-components": "off",
+    "react/jsx-one-expression-per-line": "off",
     "react/jsx-sort-props": ["warn", { "reservedFirst": ["key"] }],
     "react/jsx-filename-extension": [
       2,
@@ -51,7 +59,6 @@
     "no-void": "off",
     "require-await": "off"
   },
-
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
@@ -60,11 +67,10 @@
         "project": "./tsconfig.json"
       },
       "rules": {
-        "no-use-before-define": "off",
         "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-unnecessary-condition": "off",
-        "@typescript-eslint/no-unsafe-assignment": "warn",
-        "@typescript-eslint/no-use-before-define": ["error"],
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/require-await": "off",
         "@typescript-eslint/restrict-template-expressions": "warn",
         "@typescript-eslint/unbound-method": "warn"

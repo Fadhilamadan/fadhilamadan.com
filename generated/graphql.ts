@@ -17,6 +17,8 @@ export type Scalars = {
   /** Represents `true` or `false` values. */
   BooleanType: any;
   CustomData: any;
+  /** A ISO 8601 compliant date value */
+  Date: any;
   /** A ISO 8601 compliant datetime value */
   DateTime: any;
   /** Represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). */
@@ -121,6 +123,25 @@ export type CreatedAtFilter = {
 
 
 
+/** Specifies how to filter Date fields */
+export type DateFilter = {
+  /** Filter records with a value that's strictly greater than the one specified */
+  gt?: Maybe<Scalars['Date']>;
+  /** Filter records with a value that's less than the one specified */
+  lt?: Maybe<Scalars['Date']>;
+  /** Filter records with a value that's greater than or equal to the one specified */
+  gte?: Maybe<Scalars['Date']>;
+  /** Filter records with a value that's less or equal than the one specified */
+  lte?: Maybe<Scalars['Date']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: Maybe<Scalars['BooleanType']>;
+  /** Search for records with an exact match */
+  eq?: Maybe<Scalars['Date']>;
+  /** Exclude records with an exact match */
+  neq?: Maybe<Scalars['Date']>;
+};
+
+
 export enum FaviconType {
   Icon = 'icon',
   AppleTouchIcon = 'appleTouchIcon',
@@ -194,6 +215,20 @@ export type FileFieldTitleArgs = {
 
 export type FileFieldUrlArgs = {
   imgixParams?: Maybe<ImgixParams>;
+};
+
+/** Specifies how to filter Single-file/image fields */
+export type FileFilter = {
+  /** Search for records with an exact match. The specified value must be an Upload ID */
+  eq?: Maybe<Scalars['UploadId']>;
+  /** Exclude records with an exact match. The specified value must be an Upload ID */
+  neq?: Maybe<Scalars['UploadId']>;
+  /** Filter records that have one of the specified uploads */
+  in?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
+  /** Filter records that do not have one of the specified uploads */
+  notIn?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 
@@ -1631,6 +1666,12 @@ export type ProjectModelFilter = {
   _updatedAt?: Maybe<UpdatedAtFilter>;
   updatedAt?: Maybe<UpdatedAtFilter>;
   _isValid?: Maybe<BooleanFilter>;
+  endDate?: Maybe<DateFilter>;
+  startDate?: Maybe<DateFilter>;
+  url?: Maybe<StringFilter>;
+  cover?: Maybe<FileFilter>;
+  subtitle?: Maybe<TextFilter>;
+  title?: Maybe<StringFilter>;
   OR?: Maybe<Array<Maybe<ProjectModelFilter>>>;
 };
 
@@ -1656,7 +1697,15 @@ export enum ProjectModelOrderBy {
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
   IsValidAsc = '_isValid_ASC',
-  IsValidDesc = '_isValid_DESC'
+  IsValidDesc = '_isValid_DESC',
+  EndDateAsc = 'endDate_ASC',
+  EndDateDesc = 'endDate_DESC',
+  StartDateAsc = 'startDate_ASC',
+  StartDateDesc = 'startDate_DESC',
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 /** Record of type Project (project) */
@@ -1673,15 +1722,27 @@ export type ProjectRecord = {
   _status: ItemStatus;
   _unpublishingScheduledAt?: Maybe<Scalars['DateTime']>;
   _updatedAt: Scalars['DateTime'];
+  cover?: Maybe<FileField>;
   createdAt: Scalars['DateTime'];
+  endDate?: Maybe<Scalars['Date']>;
   id: Scalars['ItemId'];
+  startDate?: Maybe<Scalars['Date']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
+  url?: Maybe<Scalars['String']>;
 };
 
 
 /** Record of type Project (project) */
 export type ProjectRecord_SeoMetaTagsArgs = {
   locale?: Maybe<SiteLocale>;
+};
+
+
+/** Record of type Project (project) */
+export type ProjectRecordSubtitleArgs = {
+  markdown?: Maybe<Scalars['Boolean']>;
 };
 
 /** Specifies how to filter by publication datetime */
@@ -1926,6 +1987,26 @@ export type StatusFilter = {
   notIn?: Maybe<Array<Maybe<ItemStatus>>>;
 };
 
+/** Specifies how to filter Single-line string fields */
+export type StringFilter = {
+  /** Filter records based on a regular expression */
+  matches?: Maybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: Maybe<StringMatchesFilter>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: Maybe<Scalars['BooleanType']>;
+  /** Search for records with an exact match */
+  eq?: Maybe<Scalars['String']>;
+  /** Exclude records with an exact match */
+  neq?: Maybe<Scalars['String']>;
+  /** Filter records that equal one of the specified values */
+  in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** Filter records that do not equal one of the specified values */
+  notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: Maybe<Scalars['BooleanType']>;
+};
+
 export type StringMatchesFilter = {
   pattern: Scalars['String'];
   caseSensitive?: Maybe<Scalars['BooleanType']>;
@@ -1937,6 +2018,18 @@ export type Tag = {
   attributes?: Maybe<Scalars['MetaTagAttributes']>;
   content?: Maybe<Scalars['String']>;
   tag: Scalars['String'];
+};
+
+/** Specifies how to filter text fields */
+export type TextFilter = {
+  /** Filter records based on a regular expression */
+  matches?: Maybe<StringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: Maybe<StringMatchesFilter>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: Maybe<Scalars['BooleanType']>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 /** Specifies how to filter by upload type */
@@ -2312,6 +2405,19 @@ export const ResponsiveImageFieldsFragmentDoc = /*#__PURE__*/ gql`
   width
 }
     `;
+export const ProjectFragmentDoc = /*#__PURE__*/ gql`
+    fragment ProjectFragment on ProjectRecord {
+  id
+  title
+  url
+  subtitle
+  cover {
+    responsiveImage(imgixParams: {ar: "16:9", fit: crop}) {
+      ...ResponsiveImageFields
+    }
+  }
+}
+    ${ResponsiveImageFieldsFragmentDoc}`;
 export const AboutStaticPropsDocument = /*#__PURE__*/ gql`
     query aboutStaticProps {
   about {
@@ -2339,6 +2445,13 @@ export const HomeStaticPropsDocument = /*#__PURE__*/ gql`
   }
 }
     ${ResponsiveImageFieldsFragmentDoc}`;
+export const ProjectsStaticPropsDocument = /*#__PURE__*/ gql`
+    query projectsStaticProps {
+  allProjects(orderBy: startDate_DESC) {
+    ...ProjectFragment
+  }
+}
+    ${ProjectFragmentDoc}`;
 export const WebsiteSeoTagsDocument = /*#__PURE__*/ gql`
     query websiteSeoTags {
   about {
@@ -2382,6 +2495,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     homeStaticProps(variables?: HomeStaticPropsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HomeStaticPropsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HomeStaticPropsQuery>(HomeStaticPropsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'homeStaticProps');
+    },
+    projectsStaticProps(variables?: ProjectsStaticPropsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ProjectsStaticPropsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProjectsStaticPropsQuery>(ProjectsStaticPropsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'projectsStaticProps');
     },
     websiteSeoTags(variables?: WebsiteSeoTagsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WebsiteSeoTagsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WebsiteSeoTagsQuery>(WebsiteSeoTagsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'websiteSeoTags');
@@ -2430,6 +2546,29 @@ export type HomeStaticPropsQuery = (
       )> }
     )> }
   ) }
+);
+
+export type ProjectFragment = (
+  { __typename?: 'ProjectRecord' }
+  & Pick<ProjectRecord, 'id' | 'title' | 'url' | 'subtitle'>
+  & { cover?: Maybe<(
+    { __typename?: 'FileField' }
+    & { responsiveImage?: Maybe<(
+      { __typename?: 'ResponsiveImage' }
+      & ResponsiveImageFieldsFragment
+    )> }
+  )> }
+);
+
+export type ProjectsStaticPropsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsStaticPropsQuery = (
+  { __typename?: 'Query' }
+  & { allProjects: Array<(
+    { __typename?: 'ProjectRecord' }
+    & ProjectFragment
+  )> }
 );
 
 export type WebsiteSeoTagsQueryVariables = Exact<{ [key: string]: never; }>;

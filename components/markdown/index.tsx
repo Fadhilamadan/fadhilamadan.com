@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import prismTheme from '~/components/markdown/prism-theme';
+import prismTheme from '~components/markdown/prism-theme';
 
 import {
   Box,

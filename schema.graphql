@@ -98,6 +98,41 @@ input CreatedAtFilter {
 
 scalar CustomData
 
+"""A ISO 8601 compliant date value"""
+scalar Date
+
+"""Specifies how to filter Date fields"""
+input DateFilter {
+  """
+  Filter records with a value that's strictly greater than the one specified
+  """
+  gt: Date
+
+  """Filter records with a value that's less than the one specified"""
+  lt: Date
+
+  """
+  Filter records with a value that's greater than or equal to the one specified
+  """
+  gte: Date
+
+  """
+  Filter records with a value that's less or equal than the one specified
+  """
+  lte: Date
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
+
+  """Search for records with an exact match"""
+  eq: Date
+
+  """Exclude records with an exact match"""
+  neq: Date
+}
+
 """A ISO 8601 compliant datetime value"""
 scalar DateTime
 
@@ -169,6 +204,30 @@ type FileField {
   ): String!
   video: UploadVideoField
   width: IntType
+}
+
+"""Specifies how to filter Single-file/image fields"""
+input FileFilter {
+  """
+  Search for records with an exact match. The specified value must be an Upload ID
+  """
+  eq: UploadId
+
+  """
+  Exclude records with an exact match. The specified value must be an Upload ID
+  """
+  neq: UploadId
+
+  """Filter records that have one of the specified uploads"""
+  in: [UploadId]
+
+  """Filter records that do not have one of the specified uploads"""
+  notIn: [UploadId]
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
 }
 
 """
@@ -1737,6 +1796,12 @@ input ProjectModelFilter {
   _updatedAt: UpdatedAtFilter
   updatedAt: UpdatedAtFilter
   _isValid: BooleanFilter
+  endDate: DateFilter
+  startDate: DateFilter
+  url: StringFilter
+  cover: FileFilter
+  subtitle: TextFilter
+  title: StringFilter
   OR: [ProjectModelFilter]
 }
 
@@ -1763,6 +1828,14 @@ enum ProjectModelOrderBy {
   updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  endDate_ASC
+  endDate_DESC
+  startDate_ASC
+  startDate_DESC
+  url_ASC
+  url_DESC
+  title_ASC
+  title_DESC
 }
 
 """Record of type Project (project)"""
@@ -1782,9 +1855,18 @@ type ProjectRecord {
   _status: ItemStatus!
   _unpublishingScheduledAt: DateTime
   _updatedAt: DateTime!
+  cover: FileField
   createdAt: DateTime!
+  endDate: Date
   id: ItemId!
+  startDate: Date
+  subtitle(
+    """Process content as markdown"""
+    markdown: Boolean
+  ): String
+  title: String
   updatedAt: DateTime!
+  url: String
 }
 
 """Specifies how to filter by publication datetime"""
@@ -2025,6 +2107,37 @@ input StatusFilter {
   notIn: [ItemStatus]
 }
 
+"""Specifies how to filter Single-line string fields"""
+input StringFilter {
+  """Filter records based on a regular expression"""
+  matches: StringMatchesFilter
+
+  """Exclude records based on a regular expression"""
+  notMatches: StringMatchesFilter
+
+  """
+  Filter records with the specified field set as blank (null or empty string)
+  """
+  isBlank: BooleanType
+
+  """Search for records with an exact match"""
+  eq: String
+
+  """Exclude records with an exact match"""
+  neq: String
+
+  """Filter records that equal one of the specified values"""
+  in: [String]
+
+  """Filter records that do not equal one of the specified values"""
+  notIn: [String]
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
+}
+
 input StringMatchesFilter {
   pattern: String!
   caseSensitive: BooleanType = false
@@ -2035,6 +2148,25 @@ type Tag {
   attributes: MetaTagAttributes
   content: String
   tag: String!
+}
+
+"""Specifies how to filter text fields"""
+input TextFilter {
+  """Filter records based on a regular expression"""
+  matches: StringMatchesFilter
+
+  """Exclude records based on a regular expression"""
+  notMatches: StringMatchesFilter
+
+  """
+  Filter records with the specified field set as blank (null or empty string)
+  """
+  isBlank: BooleanType
+
+  """
+  Filter records with the specified field defined (i.e. with any value) or not
+  """
+  exists: BooleanType
 }
 
 """Specifies how to filter by upload type"""
