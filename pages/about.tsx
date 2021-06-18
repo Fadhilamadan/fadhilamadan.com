@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import trimHttps from '~/utils/trim-https';
 import { baseComponents } from '~components/markdown';
 import { AboutStaticPropsQuery } from '~generated/graphql';
 import cms from '~lib/cms';
 import { useMeta } from '~store/meta';
+import trimHttps from '~utils/trim-https';
 
 import {
   Box,
