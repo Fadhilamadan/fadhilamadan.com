@@ -15,9 +15,9 @@ const Navbar: React.FC = () => {
     router.route,
   ]);
 
-  const [gray900] = useToken('colors', ['gray.900']) as [string];
-  const bgColor = `${gray900}E6`;
-  const lighterBgColor = `${gray900}99`;
+  const [blackAlpha900] = useToken('colors', ['blackAlpha.900']) as [string];
+  const bgColor = `${blackAlpha900}E6`;
+  const lighterBgColor = `${blackAlpha900}99`;
 
   return (
     <HStack
@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         <Link key={name} href={route} passHref>
           <Button
             as="a"
-            colorScheme={isRoute(route) ? 'yellow' : null}
+            colorScheme={isRoute(route) ? 'telegram' : null}
             fontWeight={isRoute(route) ? 'bold' : 'normal'}
             variant="ghost"
           >

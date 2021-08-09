@@ -15,7 +15,7 @@ export default extendTheme(<ThemeOverride>{
     Link: {
       variants: {
         link: {
-          color: 'yellow.200',
+          color: 'telegram.400',
         },
       },
     },
@@ -40,7 +40,7 @@ export default extendTheme(<ThemeOverride>{
         scrollBehavior: 'smooth',
       },
       body: {
-        bg: 'gray.900',
+        bg: 'blackAlpha.900',
         color: 'whiteAlpha.900',
         cursor: 'default',
         fontFamily: 'body',
@@ -63,7 +63,7 @@ export default extendTheme(<ThemeOverride>{
         pointerEvents: 'none',
       },
       '#nprogress .bar': {
-        bgGradient: 'linear(to-r, whiteAlpha.400, yellow.200)',
+        bgGradient: 'linear(to-r, whiteAlpha.400, telegram.400)',
         h: '2px',
         left: 0,
         pos: 'fixed',

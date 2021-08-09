@@ -45,13 +45,13 @@ const MobileModal: React.FC = () => {
             },
           }}
         >
-          <ModalContent bgColor="gray.900">
+          <ModalContent bgColor="blackAlpha.900">
             <ModalBody d="flex" flexDir="column" justifyContent="center" p={8}>
               {routeArray.map(([route, name]) => (
                 <Link key={name} href={route} passHref>
                   <Button
                     as="a"
-                    colorScheme={isRoute(route) ? 'yellow' : undefined}
+                    colorScheme={isRoute(route) ? 'telegram' : undefined}
                     fontWeight={isRoute(route) ? 'bold' : 'normal'}
                     onClick={onClose}
                     size="lg"
@@ -76,7 +76,7 @@ const MobileModal: React.FC = () => {
 
       {isMobile && (
         <Center
-          bgGradient="linear(to-t, gray.900, transparent)"
+          bgGradient="linear(to-t, blackAlpha.900, transparent)"
           bottom={0}
           insetX={0}
           p={4}
