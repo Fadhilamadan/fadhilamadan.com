@@ -58,7 +58,7 @@ const ProjectItem: React.FC<ProjectItemProps> = (props) => {
 
         {data.url !== null && (
           <LinkOverlay
-            color="telegram.400"
+            color="red.400"
             fontSize={['xs', 'sm']}
             href={data.url as string}
             isExternal

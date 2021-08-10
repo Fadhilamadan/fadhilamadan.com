@@ -15,7 +15,7 @@ export default extendTheme(<ThemeOverride>{
     Link: {
       variants: {
         link: {
-          color: 'telegram.400',
+          color: 'red.400',
         },
       },
     },
@@ -63,7 +63,7 @@ export default extendTheme(<ThemeOverride>{
         pointerEvents: 'none',
       },
       '#nprogress .bar': {
-        bgGradient: 'linear(to-r, whiteAlpha.400, telegram.400)',
+        bgGradient: 'linear(to-r, whiteAlpha.400, red.400)',
         h: '2px',
         left: 0,
         pos: 'fixed',
