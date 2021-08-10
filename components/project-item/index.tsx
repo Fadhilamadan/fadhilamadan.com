@@ -5,6 +5,7 @@ import { ProjectFragment } from '~generated/graphql';
 import trimHttps from '~utils/trim-https';
 
 import { Heading, LinkBox, LinkOverlay, Stack, Text } from '@chakra-ui/react';
+import { ResponsiveImageType } from 'react-datocms';
 
 interface ProjectItemProps {
   data: ProjectFragment;
@@ -32,7 +33,7 @@ const ProjectItem: React.FC<ProjectItemProps> = (props) => {
       <DatoImage
         _groupHover={{ filter: 'blur(2px)' }}
         d="block"
-        data={data.cover.responsiveImage}
+        data={data.cover?.responsiveImage as ResponsiveImageType}
         transitionDuration="normal"
         transitionProperty="common"
         transitionTimingFunction="ease-out"
@@ -59,11 +60,11 @@ const ProjectItem: React.FC<ProjectItemProps> = (props) => {
           <LinkOverlay
             color="telegram.400"
             fontSize={['xs', 'sm']}
-            href={data.url}
+            href={data.url as string}
             isExternal
             pb={4}
           >
-            {trimHttps(data.url)}
+            {trimHttps(data.url as string)}
           </LinkOverlay>
         )}
       </Stack>

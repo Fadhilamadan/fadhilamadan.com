@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import { Image } from 'react-datocms';
+import { Image, ResponsiveImageType } from 'react-datocms';
 import ReactMarkdown from 'react-markdown';
 
 interface AboutPageProps {
@@ -39,7 +39,7 @@ const AboutPage: NextPage<AboutPageProps> = (props) => {
   const { data } = props;
 
   const meta = useMeta();
-  const socials = meta.about.socials as Record<string, string>;
+  const socials = meta.about?.socials as Record<string, string>;
 
   const pageMeta = {
     title: 'About me',
@@ -52,29 +52,34 @@ const AboutPage: NextPage<AboutPageProps> = (props) => {
 
       <Container maxW="4xl" p={[4, 8]}>
         <Box pb={8}>
-          <Image data={data.about.image.responsiveImage} />
+          <Image
+            data={data.about?.image?.responsiveImage as ResponsiveImageType}
+          />
         </Box>
 
         <Stack lineHeight="tall" pb={8} spacing={4}>
           <ReactMarkdown
-            children={data.about.preface}
+            children={data.about?.preface as string}
             components={baseComponents}
           />
         </Stack>
 
         <SimpleGrid columns={[2, 3, 4]} gap={4}>
-          {data.about.knowledges.map((item) => (
-            <Box key={item.title}>
-              <Heading pb={4} size="md">
-                {item.title}
-              </Heading>
-              <List fontSize="sm" spacing={1}>
-                {item.entries.split(', ').map((e, i) => (
-                  <ListItem key={i}>{e.trim()}</ListItem>
-                ))}
-              </List>
-            </Box>
-          ))}
+          {data.about?.knowledges?.map(
+            (item) =>
+              item && (
+                <Box key={item.title}>
+                  <Heading pb={4} size="md">
+                    {item.title}
+                  </Heading>
+                  <List fontSize="sm" spacing={1}>
+                    {item.entries?.split(', ').map((e, i) => (
+                      <ListItem key={i}>{e.trim()}</ListItem>
+                    ))}
+                  </List>
+                </Box>
+              ),
+          )}
         </SimpleGrid>
 
         <Box color="whiteAlpha.400" py={8}>
@@ -83,8 +88,8 @@ const AboutPage: NextPage<AboutPageProps> = (props) => {
 
         <Text pb={2}>
           You can reach out via email at{' '}
-          <Link href={`mailto:${meta.about.email}`} variant="link">
-            {meta.about.email}
+          <Link href={`mailto:${meta.about?.email}`} variant="link">
+            {meta.about?.email}
           </Link>
           , or via socials below:
         </Text>

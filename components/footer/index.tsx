@@ -23,9 +23,9 @@ and [DatoCMS](https://www.datocms.com). Hosted on [Vercel](https://vercel.com).
 Inspired from [Griko](https://griko.id).
 
 MIT License &copy; ${new Date().getFullYear()}&ndash;present
-[${meta.site.seo.siteName}](.).`;
+[${meta.site.seo?.siteName}](.).`;
 
-  const { GitHub, LinkedIn, Twitter } = meta.about.socials as Record<
+  const { GitHub, LinkedIn, Twitter } = meta.about?.socials as Record<
     string,
     string
   >;

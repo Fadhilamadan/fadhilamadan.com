@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         <Link key={name} href={route} passHref>
           <Button
             as="a"
-            colorScheme={isRoute(route) ? 'telegram' : null}
+            colorScheme={isRoute(route) ? 'telegram' : undefined}
             fontWeight={isRoute(route) ? 'bold' : 'normal'}
             variant="ghost"
           >
