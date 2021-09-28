@@ -1,3 +1,5 @@
 module.exports = {
-  cloudflare: process.env.CLOUDFLARE_API_KEY,
+  cloudflare: JSON.stringify({
+    token: process.env.NEXT_PUBLIC_CLOUDFLARE_API_KEY,
+  }),
 };

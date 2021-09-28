@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - '14'
+branches:
+  only:
+    - main
+cache:
+  npm: true
+before_script:
+  - cp .env.local.example .env.local
+os:
+  - linux

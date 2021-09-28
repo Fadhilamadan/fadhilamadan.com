@@ -16,7 +16,7 @@ import { AnimatePresence } from 'framer-motion';
 import NextApp, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
-import { OpenGraphImages } from 'next-seo/lib/types';
+import { OpenGraphMedia } from 'next-seo/lib/types';
 import { renderMetaTags, SeoMetaTagType } from 'react-datocms';
 
 interface CustomAppProps extends AppProps {
@@ -83,7 +83,7 @@ export default function App(props: CustomAppProps) {
         openGraph={{
           type: 'website',
           site_name: meta.site.seo?.siteName as string,
-          images: [meta.site.seo?.fallback?.image as OpenGraphImages],
+          images: [meta.site.seo?.fallback?.image as OpenGraphMedia],
         }}
         twitter={{
           cardType: meta.site.seo?.fallback?.twitterCard as string,
