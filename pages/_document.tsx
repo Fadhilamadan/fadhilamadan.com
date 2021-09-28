@@ -35,19 +35,18 @@ export default class CustomDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap"
             rel="stylesheet"
           />
+
+          <script
+            data-cf-beacon={analytics.cloudflare}
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+          />
         </Head>
 
         <body>
           <ColorModeScript initialColorMode="dark" />
           <Main />
           <NextScript />
-
-          {/* Cloudflare Web Analytics */}
-          <script
-            data-cf-beacon={analytics.cloudflare}
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-          />
         </body>
       </Html>
     );
