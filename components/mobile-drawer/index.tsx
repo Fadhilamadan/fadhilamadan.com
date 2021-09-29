@@ -26,9 +26,10 @@ const MobileModal: React.FC = () => {
 
   const router = useRouter();
 
-  const isRoute = React.useCallback((route: string) => router.route === route, [
-    router.route,
-  ]);
+  const isRoute = React.useCallback(
+    (route: string) => router.route === route,
+    [router.route],
+  );
 
   const isMobile = useBreakpointValue({ base: true, sm: false });
 
