@@ -8,6 +8,7 @@
     "start": "next start",
     "test": "jest --passWithNoTests",
     "lint": "next lint",
+    "release": "standard-version",
     "codegen": "env-cmd -f .env.local graphql-codegen"
   },
   "dependencies": {
