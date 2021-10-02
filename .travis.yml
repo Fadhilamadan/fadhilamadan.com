@@ -4,6 +4,7 @@ node_js:
 branches:
   only:
     - main
+    - develop
 cache:
   npm: true
 before_script:
