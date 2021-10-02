@@ -1,6 +1,7 @@
+const { withSentryConfig } = require('@sentry/nextjs');
 const path = require('path');
 
-module.exports = {
+const moduleExports = {
   // https://nextjs.org/docs/api-reference/next.config.js/headers
   async headers() {
     return [
@@ -44,3 +45,11 @@ module.exports = {
     return config;
   },
 };
+
+const SentryWebpackPluginOptions = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+  silent: true,
+};
+
+module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
