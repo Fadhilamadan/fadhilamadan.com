@@ -52,7 +52,7 @@ const MobileModal: React.FC = () => {
                 <Link key={name} href={route} passHref>
                   <Button
                     as="a"
-                    colorScheme={isRoute(route) ? 'red' : undefined}
+                    colorScheme={isRoute(route) ? 'yellow' : undefined}
                     fontWeight={isRoute(route) ? 'bold' : 'normal'}
                     onClick={onClose}
                     size="lg"
@@ -62,12 +62,7 @@ const MobileModal: React.FC = () => {
                   </Button>
                 </Link>
               ))}
-              <Text
-                color="whiteAlpha.400"
-                fontSize="xs"
-                pt={8}
-                textAlign="center"
-              >
+              <Text color="whiteAlpha.400" fontSize="xs" pt={8} textAlign="center">
                 Press outside the menu to close
               </Text>
             </ModalBody>

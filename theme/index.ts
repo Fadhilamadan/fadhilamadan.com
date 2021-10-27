@@ -1,8 +1,4 @@
-import {
-  extendTheme,
-  theme as defaultTheme,
-  ThemeOverride,
-} from '@chakra-ui/react';
+import { extendTheme, theme as defaultTheme, ThemeOverride } from '@chakra-ui/react';
 
 export default extendTheme(<ThemeOverride>{
   components: {
@@ -15,7 +11,7 @@ export default extendTheme(<ThemeOverride>{
     Link: {
       variants: {
         link: {
-          color: 'red.400',
+          color: 'yellow.200',
         },
       },
     },
@@ -63,7 +59,7 @@ export default extendTheme(<ThemeOverride>{
         pointerEvents: 'none',
       },
       '#nprogress .bar': {
-        bgGradient: 'linear(to-r, whiteAlpha.400, red.400)',
+        bgGradient: 'linear(to-r, whiteAlpha.400, yellow.200)',
         h: '2px',
         left: 0,
         pos: 'fixed',
