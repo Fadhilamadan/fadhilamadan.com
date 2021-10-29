@@ -1,6 +1,6 @@
-import { extendTheme, theme as defaultTheme, ThemeOverride } from '@chakra-ui/react';
+import { extendTheme, theme as defaultTheme } from '@chakra-ui/react';
 
-export default extendTheme(<ThemeOverride>{
+export default extendTheme({
   components: {
     Heading: {
       baseStyle: {
@@ -12,6 +12,21 @@ export default extendTheme(<ThemeOverride>{
       variants: {
         link: {
           color: 'yellow.200',
+        },
+      },
+    },
+    Modal: {
+      baseStyle: {
+        dialog: {
+          bgColor: 'gray.900',
+        },
+        overlay: {
+          '@supports (backdrop-filter: blur(4px))': {
+            backdropFilter: 'blur(4px)',
+          },
+          '@supports (-webkit-backdrop-filter: blur(4px))': {
+            WebkitBackdropFilter: 'blur(4px)',
+          },
         },
       },
     },
@@ -28,6 +43,9 @@ export default extendTheme(<ThemeOverride>{
 
   styles: {
     global: {
+      ':root': {
+        colorScheme: 'dark',
+      },
       '::selection, ::-moz-selection': {
         bgColor: 'whiteAlpha.400',
       },
