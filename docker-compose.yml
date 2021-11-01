@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  nextjs:
+    build:
+      context: .
+    container_name: fadhilamadan
+    image: fadhilamadan.com:latest
+    ports:
+      - "3000:3000"
