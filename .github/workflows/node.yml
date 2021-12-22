@@ -18,11 +18,6 @@ jobs:
       matrix:
         node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        
-    env:
-      DATOCMS_API_KEY: ${{ secrets.DATOCMS_API_KEY }}
-      NEXT_PUBLIC_DATOCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_DATOCMS_API_KEY }}
-      NEXT_PUBLIC_CLOUDFLARE_API_KEY: ${{ secrets.NEXT_PUBLIC_CLOUDFLARE_API_KEY }}
 
     steps:
     - uses: actions/checkout@v2
@@ -33,4 +28,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+      env:
+        DATOCMS_API_KEY: ${{ secrets.DATOCMS_API_KEY }}
+        NEXT_PUBLIC_DATOCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_DATOCMS_API_KEY }}
+        NEXT_PUBLIC_CLOUDFLARE_API_KEY: ${{ secrets.NEXT_PUBLIC_CLOUDFLARE_API_KEY }}
     - run: npm test
