@@ -1,4 +1,3 @@
-const { withSentryConfig } = require('@sentry/nextjs');
 const path = require('path');
 
 const csp = `
@@ -12,7 +11,7 @@ const csp = `
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
 `;
 
-const moduleExports = {
+module.exports = {
   experimental: {
     esmExternals: false, // https://github.com/vercel/next.js/issues/30330#issuecomment-952172377
     workerThreads: true,
@@ -124,11 +123,3 @@ const moduleExports = {
     return config;
   },
 };
-
-const SentryWebpackPluginOptions = {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options.
-  silent: true,
-};
-
-module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
