@@ -1,0 +1,35 @@
+name: Node CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  DATOCMS_API_KEY: ${{ secrets.DATOCMS_API_KEY }}
+  NEXT_PUBLIC_DATOCMS_API_KEY: ${{ secrets.NEXT_PUBLIC_DATOCMS_API_KEY }}
+  NEXT_PUBLIC_CLOUDFLARE_API_KEY: ${{ secrets.NEXT_PUBLIC_CLOUDFLARE_API_KEY }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Actions Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install NPM Dependencies
+        run: npm ci
+      - name: Run Build Application
+        run: npm run build --if-present
+      - name: Run Testing
+        run: npm test
