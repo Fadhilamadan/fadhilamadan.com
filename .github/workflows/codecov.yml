@@ -1,0 +1,29 @@
+name: CodeCov
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Actions Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install NPM Dependencies
+        run: npm install
+      - name: Run Testing
+        run: npm test -- --coverage
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
